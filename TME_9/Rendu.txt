@@ -1,0 +1,160 @@
+==================================================================================
+                                     TME 9-10
+==================================================================================
+
+-------------------------------------------
+--------- Exercice 2 TME SATPLAN: ---------
+-------------------------------------------
+
+Nous avons dans un premier temps effectué le problème sur le monde des blocs défini dans le TD.
+Nous avons effectué la ligne de commande suivante : 
+./satplan -domain blockWorld-domain.pddl -problem blockWorld-problem.pddl
+Nous avons obtenu la solution suivante :
+        ; Time 0.00
+        ; ParsingTime    0.00
+        ; MakeSpan 4
+        0: (UNSTACK B A) [1]
+        1: (STACK B C) [1]
+        2: (PICK-UP A) [1]
+        3: (STACK A B) [1]
+Cela correspond au fait de prendre le bloc B se trouvant sur le bloc A, puis de le poser sur le 
+bloc C, puis de prendre le bloc A sur la table et le poser sur le bloc B.
+
+
+Dans un second temps (blockWorld-problem2.pddl) on part d'une configuration où A se trouve sur la table, puis 
+les blocs sont empilés sur A dans l'ordre B, C, D, E, F. 
+L'objectif est de se ramener à un configuration inverse, c'est-à-dire avec F sur la table et les
+blocs empilés dans l'ordre de bas en haut E, D, C, B et A.
+On obtient alors la solution suivante : 
+        ; Time 0.06
+        ; ParsingTime    0.00
+        ; MakeSpan 12
+        0: (UNSTACK F E) [1]
+        1: (PUT-DOWN F) [1]
+        2: (UNSTACK E D) [1]
+        3: (STACK E F) [1]
+        4: (UNSTACK D C) [1]
+        5: (STACK D E) [1]
+        6: (UNSTACK C B) [1]
+        7: (STACK C D) [1]
+        8: (UNSTACK B A) [1]
+        9: (STACK B C) [1]
+        10: (PICK-UP A) [1]
+        11: (STACK A B) [1]
+
+Enfin, (blockWorld-problem3.pddl) on part d'un configuration avec : 
+        - A sur la table, puis B et C empilés dessus (C au sommet)
+        - D sur la table, puis E et F empilés dessus (F au sommet) 
+        - G sur la table sans rien dessus
+        - H sur la table, puis I et J empilés dessus (J au sommet)
+L'objectif est alors d'obtenir les blocs tous empilés dans l'ordre suivant de bas en haut : 
+J, I, H, G, F, E, D, C, B, A. 
+On obtient la solution suivante : 
+        ; Time 1.72
+        ; ParsingTime    0.00
+        ; MakeSpan 22
+        0: (UNSTACK J H) [1]
+        1: (PUT-DOWN J) [1]
+        2: (UNSTACK H I) [1]
+        3: (STACK H F) [1]
+        4: (PICK-UP I) [1]
+        5: (STACK I J) [1]
+        6: (UNSTACK H F) [1]
+        7: (STACK H I) [1]
+        8: (PICK-UP G) [1]
+        9: (STACK G H) [1]
+        10: (UNSTACK F E) [1]
+        11: (STACK F G) [1]
+        12: (UNSTACK E D) [1]
+        13: (STACK E F) [1]
+        14: (PICK-UP D) [1]
+        15: (STACK D E) [1]
+        16: (UNSTACK C B) [1]
+        17: (STACK C D) [1]
+        18: (UNSTACK B A) [1]
+        19: (STACK B C) [1]
+        20: (PICK-UP A) [1]
+        21: (STACK A B) [1]
+
+
+
+------------------------------------------
+--------- Exercice 3 TD SATPLAN: ---------
+------------------------------------------
+
+Lorsque l'on lance le problème tel que défini dans le TD, on obtient la solution suivante : 
+
+    ; Time 0.04
+    ; ParsingTime    0.00
+    ; MakeSpan 8
+    0: (CHARGER C1 A2 TEG) [1]
+    0: (CHARGER C3 A1 TEG) [1]
+    1: (VOLER A2 TEG BAR) [1]
+    2: (DECHARGER C1 A2 BAR) [1]
+    2: (VOLER A1 TEG BAR) [1]
+    3: (VOLER A2 BAR TEG) [1]
+    3: (DECHARGER C3 A1 BAR) [1]
+    4: (VOLER A1 BAR TEG) [1]
+    4: (CHARGER C2 A2 TEG) [1]
+    5: (VOLER A1 TEG CDG) [1]
+    5: (VOLER A2 TEG BAR) [1]
+    6: (DECHARGER C2 A2 BAR) [1]
+    7: (VOLER A2 BAR CDG) [1]
+
+
+
+--------------------------------------
+--------- Exercice 3 TD ASP: ---------
+--------------------------------------
+
+%-------------------------------------------------------%
+%--- Test 1 : en 2 étapes un avion vole de teg à cdg ---%
+%-------------------------------------------------------%
+
+%Answer: 1
+%action(voler(a1,teg,cdg),1) action(charger(c3,a1,teg),0) 
+%Answer: 2
+%action(voler(a1,teg,cdg),1) action(charger(c2,a1,teg),0) 
+%Answer: 3
+%action(voler(a1,teg,cdg),1) action(charger(c1,a1,teg),0) 
+%Answer: 4
+%action(voler(a1,teg,cdg),1) action(charger(c3,a2,teg),0) 
+%Answer: 5
+%action(voler(a1,teg,cdg),1) action(charger(c2,a2,teg),0) 
+%Answer: 6
+%action(voler(a1,teg,cdg),1) action(charger(c1,a2,teg),0) 
+%Answer: 7
+%action(voler(a1,bar,cdg),1) action(voler(a1,teg,bar),0) 
+%Answer: 8
+%action(charger(c3,a2,teg),1) action(voler(a1,teg,cdg),0) 
+%Answer: 9
+%action(charger(c2,a2,teg),1) action(voler(a1,teg,cdg),0) 
+%Answer: 10
+%action(charger(c1,a2,teg),1) action(voler(a1,teg,cdg),0) 
+%Answer: 11
+%action(voler(a2,teg,bar),1) action(voler(a1,teg,cdg),0) 
+%Answer: 12
+%action(voler(a2,teg,cdg),1) action(voler(a1,teg,cdg),0) 
+%Answer: 13
+%action(voler(a1,teg,cdg),1) action(voler(a2,teg,bar),0) 
+%Answer: 14
+%action(voler(a1,teg,cdg),1) action(voler(a2,teg,cdg),0) 
+%SATISFIABLE
+
+%Models      : 14    
+%Time        : 0.000
+%  Prepare   : 0.000
+%  Prepro.   : 0.000
+%  Solving   : 0.000
+
+
+%-------------------------------------------------------%
+%---------- Test 2 : le problème de l'énoncé -----------%
+%-------------------------------------------------------%
+
+
+%Models      : 5940  
+%Time        : 0.800
+%  Prepare   : 0.060
+%  Prepro.   : 0.000
+%  Solving   : 0.740

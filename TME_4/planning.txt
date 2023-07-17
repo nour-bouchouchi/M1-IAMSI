@@ -1,0 +1,25 @@
+Planning pour 4 équipes et 6 jours : 
+
+Jour 1 :
+- match entre l'équipe Pikachu et l'équipe Tiplouf
+- match entre l'équipe Tortipouss et l'équipe Salamèche
+
+Jour 2
+- match entre l'équipe Pikachu et l'équipe Tortipouss
+- match entre l'équipe Tiplouf et l'équipe Salamèche
+
+Jour 3
+- match entre l'équipe Tortipouss et l'équipe Pikachu
+- match entre l'équipe Salamèche et l'équipe Tiplouf
+
+Jour 4
+- match entre l'équipe Tiplouf et l'équipe Pikachu
+- match entre l'équipe Salamèche et l'équipe Tortipouss
+
+Jour 5
+- match entre l'équipe Pikachu et l'équipe Salamèche
+- match entre l'équipe Tiplouf et l'équipe Tortipouss
+
+Jour 6
+- match entre l'équipe Tortipouss et l'équipe Tiplouf
+- match entre l'équipe Salamèche et l'équipe Pikachu
